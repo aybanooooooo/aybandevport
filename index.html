@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivan's Developer Portfolio</title>
+     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="devport.css">
+    <link rel="icon" href="logo.jpeg" type="image/x-icon">
+</head>
+<body>
+    <!-- Progress bar for scroll indicator -->
+    <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+    
+    <!-- Back to top button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    
+    <!-- SVG sprite: reusable icon symbols -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="M13 5l7 7-7 7"></path>
+        </symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12"></path>
+            <path d="M5 12l7 7 7-7"></path>
+            <path d="M21 21H3"></path>
+        </symbol>
+        <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <path d="M15 3h6v6"></path>
+            <path d="M10 14L21 3"></path>
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C7.58 2 4 5.58 4 10c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.82-2.14-.08-.2-.36-1.01.08-2.1 0 0 .67-.22 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.14 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38C17.71 16.53 20 13.54 20 10c0-4.42-3.58-8-8-8z"></path>
+        </symbol>
+        <symbol id="icon-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8"></path>
+            <path d="M17.5 6.5h.01"></path>
+        </symbol>
+        <symbol id="icon-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12.07C22 6.55 17.52 2 12 2S2 6.55 2 12.07C2 17.09 5.66 21.24 10.44 22v-7.02H7.9v-2.9h2.54V9.41c0-2.5 1.5-3.88 3.79-3.88 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.62.77-1.62 1.56V12h2.76l-.44 2.98h-2.32V22C18.34 21.24 22 17.09 22 12.07z"></path>
+        </symbol>
+    </svg>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Ivan</h1>
+            <nav aria-label="Main navigation">
+                <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <ul class="nav-links" id="primaryNav">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+                <svg class="theme-icon-light" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <!-- theme selector removed as requested -->
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-headline" id="headline"></h1>
+                    <p class="hero-subtitle">Passionate about web development, frontend technologies, and building innovative projects.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View Projects</span>
+                            <svg class="icon icon-arrow" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg>
+                        </a>
+                        <a href="resumee.pdf" download class="btn btn-secondary">
+                            <svg class="icon icon-download" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
+                            <span>Download Resume</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="ivan.png" alt="Ivan's Avatar" class="avatar">
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-media">
+            <div class="hero-poster" aria-hidden="true"></div>
+            <video id="heroVideo" class="hero-video" autoplay muted loop playsinline poster="ivan.png" aria-label="Background animation" preload="metadata">
+                <source src="bganime.webm" type="video/webm">
+                <source src="bganime.mp4" type="video/mp4">
+                <!-- fallback message -->
+            </video>
+            <button id="videoToggle" class="video-toggle" aria-pressed="false" aria-label="Pause background animation">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg>
+            </button>
+            <noscript>
+                <style>.hero-video{display:none !important}.hero-poster{display:block !important}</style>
+            </noscript>
+        </div>
+    </section>
+
+    <section id="about" class="about" data-anim="left">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image" data-anim="right">
+                    <div class="about-pic-wrap">
+                        <img src="ivan.png" alt="Ivan's Picture" class="about-pic" data-anim="right">
+                        <div class="about-pic-decor"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>I am Ivan, a Grade 12 ICT student who enjoys working with computers and writing code. I build small website projects because it helps me learn faster and stay active with new ideas. I listen to music while coding since it keeps me focused. I use HTML, CSS, and Java in my projects. I study these languages so I can improve my skills and understand how real systems work. My goal is to become a professional programmer who builds larger projects in the future.</p>
+                    <div class="skills">
+                        <span class="skill-badge">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h18v18H3z"/><path d="M7 9h4v8H7z"/><path d="M13 9h4v8h-4z"/></svg>
+                            HTML
+                        </span>
+                        <span class="skill-badge">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h18v18H3z"/><path d="M8 8h3v3H8z"/><path d="M13 8h3v3h-3z"/><path d="M5 14h14v4H5z"/></svg>
+                            CSS
+                        </span>
+                        <span class="skill-badge">
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="9" r="1.5"/><circle cx="8.5" cy="15" r="1.5"/><circle cx="15.5" cy="15" r="1.5"/></svg>
+                            Java
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects" data-anim="right">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card" data-anim="up">
+                    <div class="project-media">
+                        <img src="images/project1.jpg" alt="Project 1 Thumbnail" class="project-img" data-anim="up">
+                        <div class="project-overlay">
+                            <div class="project-tags"><span class="project-tag">Web</span><span class="project-tag">Html</span><span class="project-tag">Css</span><span class="project-tag">Javascript</span><span class="project-tag">PHP</span><span class="project-tag">MySQL</span></div>
+                            <div class="project-cta">
+                                <a href="#" class="btn btn-small">
+                                    <span>View Demo</span>
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg>
+                                </a>
+                                <a href="#" class="btn btn-small btn-outline">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3>GORA (General Operations Repair Assistant)</h3>
+                        <p class="project-desc">A Web Based Maintenance Management Issue Report</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact" data-anim="left">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <form class="contact-form" aria-label="Contact form">
+                <label class="sr-only" for="name">Your Name</label>
+                <input id="name" name="name" type="text" placeholder="Your Name" required>
+
+                <label class="sr-only" for="email">Your Email</label>
+                <input id="email" name="email" type="email" placeholder="Your Email" required>
+
+                <label class="sr-only" for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+
+                <button type="submit" class="btn btn-primary" id="submitBtn" aria-label="Send message">Send Message</button>
+            </form>
+            <div id="formMessage" class="form-message" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 12px; text-align: center; font-weight: 600;"></div>
+             <div class="social-links">
+       <a href="https://www.facebook.com/ivantottt" target="_blank" title="Facebook" aria-label="Facebook">
+           <svg class="icon social-icon" aria-hidden="true" focusable="false"><use href="#icon-facebook"></use></svg>
+           <span class="sr-only">Facebook</span>
+       </a>
+       <a href="https://www.instagram.com/aybanskieee?igsh=eG9pMm8yaTBud2Nl" target="_blank" title="Instagram" aria-label="Instagram">
+           <svg class="icon social-icon" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
+           <span class="sr-only">Instagram</span>
+       </a>
+       <a href="https://github.com/ivannnshhhh" target="_blank" title="GitHub" aria-label="GitHub">
+           <svg class="icon social-icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
+           <span class="sr-only">GitHub</span>
+       </a>
+   </div>
+   
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ivan. All rights reserved. | Built with HTML, CSS & JavaScript.</p>
+        </div>
+    </footer>
+
+    <script src="devport.js"></script>
+</body>
+</html>
